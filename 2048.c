@@ -5,8 +5,10 @@
 #include<conio.h>
 
 int a[4][4];
+int score=0;
 
 int add(int x,int y){
+    score=score+x+y;
     return x+y;
 }
 
@@ -19,6 +21,7 @@ void start(){
 }
 
 void display(){
+    printf("\nScore = %d\n",score);
     for(int i=0;i<4;i++){
         for(int j=0;j<4;j++){
             printf("%d\t",a[i][j]);
@@ -51,6 +54,7 @@ void insert(){
         ins = rand() % 2;
     } while (a[r][s] != 0);
     a[r][s] = (ins == 0) ? 2 : 4;
+    score=(ins==0)?score+2:score+4;
 }
 
 
