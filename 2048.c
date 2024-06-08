@@ -292,5 +292,16 @@ main(){
     fprintf(END, "%d", score);
     fclose(END);
    }
-
+    printf("\nYour score: %d\n",score);
+    printf("\nYour highest score: %d\n",highscore);
+    printf("\nDo you want to reset the high score?(y -yes any other key for no)\n ");
+    c=getch();
+    if(c=='y'||c=='Y'){
+    FILE *END;
+    END = fopen("last_score.txt", "w");
+    fprintf(END, "%d", 0);
+    fclose(END);
+    }else{
+        printf("\nEXIT SUCESSFULLY!!!\n");
+    }
 }
