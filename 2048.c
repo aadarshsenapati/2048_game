@@ -4,6 +4,7 @@
 #include<stdlib.h>
 #include<conio.h>
 
+
 int a[4][4];
 int score=0;
 
@@ -208,29 +209,41 @@ int canMove() {
 main(){
     char move,c;
     int cont=1;
+    int highscore;
+    FILE *game;
+    game=fopen("last_score.txt", "r");
+    if(game==NULL){
+        printf("High score: 0\n");
+    }else{
+        fscanf(game, "%d", &highscore);
+        printf("High score: %d\n",highscore);
+    }
+    fclose(game);
     printf("Welcome to 2048\n");
     start();
     display();
     printf("Press any key to start: \n");
     getch();
    while(cont) {
-            insert();
             display();
             printf("\n\nUse a,s,d,w to move\n");
             move = getch();
         switch(move){
             case 'a':
                 left();
+                insert();
                 break;
             case 'd':
                 right();
+                insert();
                 break;
             case 's':
                 down();
-
+                insert();
                 break;
             case 'w':
                 up();
+                insert();
                 break;
             case 'o':
                 printf("Do you want to end: (y/n)");
@@ -244,16 +257,19 @@ main(){
                 break;
             case 'A':
                 left();
+                insert();
                 break;
             case 'D':
                 right();
+                insert();
                 break;
             case 'S':
                 down();
-
+                insert();
                 break;
             case 'W':
                 up();
+                insert();
                 break;
             case 'O':
                 printf("\nDo you want to end: (y/n)\n");
@@ -269,7 +285,12 @@ main(){
                 printf("\nInvalid!\n");
                 break;
         }
-    
    }
-    
+   if(score>highscore){
+    FILE *END;
+    END = fopen("last_score.txt", "w");
+    fprintf(END, "%d", score);
+    fclose(END);
+   }
+
 }
